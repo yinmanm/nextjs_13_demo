@@ -1,7 +1,11 @@
+'use client';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import classNames from "classnames";
 
 const Header = () => {
+
+  const pathname = usePathname();
 
   return (
     <div className="bg-white shadow">
@@ -22,20 +26,19 @@ const Header = () => {
                 />
               </div>
               <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-                {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                 <Link 
                   href="/"
-                  className="inline-flex items-center border-b-2 border-indigo-500 px-1 pt-1 text-sm font-medium text-gray-900">
+                  className={classNames(pathname =='/' ? "border-indigo-500" : "border-transparent hover:border-gray-300 hover:text-gray-700", "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium text-gray-900")}>
                   Home
                 </Link>
                 <Link 
                   href="/items"
-                  className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                  className={classNames(pathname.startsWith('/items') ? "border-indigo-500" : "border-transparent hover:border-gray-300 hover:text-gray-700", "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium text-gray-900")}>
                   Items
                 </Link>
                 <Link 
                   href="/dashboard"
-                  className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">
+                  className={classNames(pathname.startsWith('/dashboard') ? "border-indigo-500" : "border-transparent hover:border-gray-300 hover:text-gray-700", "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium text-gray-900")}>
                   Dashboard
                 </Link>
               </div>
@@ -51,7 +54,6 @@ const Header = () => {
                 </svg>
               </button>
 
-              {/* Profile dropdown */}
               <div as="div" className="relative ml-3">
                 <div>
                   <button className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
@@ -111,7 +113,6 @@ const Header = () => {
 
         <div className="hidden">
           <div className="space-y-1 pb-3 pt-2">
-            {/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
             <Link 
               href="/"
               className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700"
