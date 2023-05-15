@@ -1,4 +1,5 @@
 'use client';
+import { redirect } from 'next/navigation';
 import { useState } from 'react';
 import Router from 'next/router';
 import {base} from '../api/airtable/route'
@@ -31,7 +32,8 @@ export default function Example() {
           return;
         }
         records.forEach(function (record) {
-          update(record.id)
+          console.log(record.getId());
+          update(record.getId());
         });
       });
     } else {
@@ -39,6 +41,7 @@ export default function Example() {
     }
   };
   const update = async (id) => {
+    console.log('111')
     base('User').update([
       {
         "id": id,
@@ -48,17 +51,18 @@ export default function Example() {
           "Id": id
         }
       },
-    ], function(err, records) {
+    ], function(err) {
       if (err) {
         console.error(err);
         setLoading(false)
         return;
       }
+      console.log('222')
       setLoading(false)
       localStorage.setItem('userId', id)
 
-      // window.location.href = `/profile/edit?userId=${id}`;
-      Router.push(`/profile/edit?userId=${id}`)
+      location.href = `/profile/edit?userId=${id}`;
+      // Router.push(`/profile/edit?userId=${id}`)
     });
   }
 
