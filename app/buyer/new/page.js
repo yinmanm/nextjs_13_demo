@@ -1,9 +1,11 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/navigation';
 import {base} from '../../api/airtable/route'
 
 export default function BuyerNew() {
+
+  const router = useRouter();
 
   const [loading, setLoading] = useState(false);
 
@@ -36,7 +38,7 @@ export default function BuyerNew() {
 
         // redirect('/catches');
         window.location.href = '/catches'
-        Router.push(`catches`)
+        router.push(`catches`)
       });
     } else {
       setLoading(false);

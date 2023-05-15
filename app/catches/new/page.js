@@ -2,10 +2,12 @@
 import "flatpickr/dist/themes/material_green.css";
 import Flatpickr from "react-flatpickr";
 import { useState, useEffect } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/navigation';
 import {base} from '../../api/airtable/route'
 
 export default function CatchNew() {
+
+  const router = useRouter();
 
   const [loading, setLoading] = useState(false);
   const [itemLoading, setItemLoading] = useState(false);
@@ -80,7 +82,7 @@ export default function CatchNew() {
         setLoading(false);
 
         // window.location.href = `/catches`;
-        Router.push('/catches');
+        router.push('/catches');
       }
     });
   }

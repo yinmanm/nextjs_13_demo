@@ -1,10 +1,11 @@
 'use client';
-import { redirect } from 'next/navigation';
 import { useState } from 'react';
-import Router from 'next/router';
+import { useRouter } from 'next/navigation';
 import {base} from '../api/airtable/route'
 
 export default function Example() {
+
+  const router = useRouter();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -41,7 +42,6 @@ export default function Example() {
     }
   };
   const update = async (id) => {
-    console.log('111')
     base('User').update([
       {
         "id": id,
@@ -57,12 +57,11 @@ export default function Example() {
         setLoading(false)
         return;
       }
-      console.log('222')
       setLoading(false)
       localStorage.setItem('userId', id)
 
-      location.href = `/profile/edit?userId=${id}`;
-      // Router.push(`/profile/edit?userId=${id}`)
+      // window.location.href = `/profile/edit?userId=${id}`;
+      router.push(`/profile/edit?userId=${id}`)
     });
   }
 
