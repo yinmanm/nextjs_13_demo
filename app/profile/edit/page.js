@@ -4,7 +4,7 @@ import {base} from '../../api/airtable/route'
 
 export default function Profile() {
 
-  const [userId, setUseId] = useState(location.search.split('=')[1]);
+  const [userId, setUseId] = useState(window.location.search.split('=')[1]);
   const [loading, setLoading] = useState(false);
 
   const [first_name, setFirstName] = useState('');
@@ -47,7 +47,7 @@ export default function Profile() {
         });
         setLoading(false);
 
-        location.href = `/catches`;
+        window.location.href = `/catches`;
       });
     } else {
       setLoading(false);

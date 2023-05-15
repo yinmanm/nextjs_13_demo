@@ -78,7 +78,7 @@ export default function CatchNew() {
       else {
         setLoading(false);
 
-        location.href = `/catches`;
+        window.location.href = `/catches`;
       }
     });
   }

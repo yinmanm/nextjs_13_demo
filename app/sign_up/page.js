@@ -59,7 +59,7 @@ export default function Example() {
       setLoading(false)
       localStorage.setItem('userId', id)
 
-      location.href = `/profile/edit?userId=${id}`;
+      window.location.href = `/profile/edit?userId=${id}`;
     });
   }
 

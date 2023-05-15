@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { redirect } from 'next/navigation';
 import {base} from '../../api/airtable/route'
 
 export default function BuyerNew() {
@@ -27,15 +28,14 @@ export default function BuyerNew() {
         }
       ], function(err, records) {
         if (err) {
-          console.error(err);
+          console.error('error',err);
           setLoading(false);
           return;
         }
-        records.forEach(function (record) {
-        });
         setLoading(false);
 
-        location.href = `/catches`;
+        // redirect('/catches');
+        window.location.href = '/catches'
       });
     } else {
       setLoading(false);
