@@ -5,7 +5,7 @@ export default function Home() {
     <main className="">
       <div className="">
         <div className='flex justify-center'>
-          <a href="/items" className='py-40 text-blue-500 underline'>Go to Items page</a>
+          <a href="/catches" className='py-40 text-blue-500 underline'>Go to Catches page</a>
         </div>
       </div>
     </main>

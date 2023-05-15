@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Loading from '../componets/Loading';
 
-export default function Items() {
+export default function Demo() {
 
   const [query, setQuery] = useState('');
   const [items, setItems] = useState([]);
@@ -66,7 +66,7 @@ export default function Items() {
         {items.map((person) => (
           <li key={person.email} className="relative py-5 hover:bg-gray-50">
             <Link 
-              href={`/item/${person.id}`}
+              href={`/catch/${person.id}`}
               className="block"
               >
               <div className="px-4 sm:px-6 lg:px-8">
