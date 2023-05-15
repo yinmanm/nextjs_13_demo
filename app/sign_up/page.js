@@ -54,9 +54,6 @@ export default function Example() {
         setLoading(false)
         return;
       }
-      records.forEach(function(record) {
-        // console.log(record.get('Email'));
-      });
       setLoading(false)
       localStorage.setItem('userId', id)
 
