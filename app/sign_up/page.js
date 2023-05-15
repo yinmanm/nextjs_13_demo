@@ -36,9 +36,10 @@ export default function Example() {
           console.log(record.getId());
           setLoading(false)
           localStorage.setItem('userId', record.getId())
+          location.href = `/profile/edit?userId=${record.getId()}`;
 
           // window.location.href = `/profile/edit?userId=${id}`;
-          router.push(`/profile/edit?userId=${record.getId()}`)
+          // router.push(`/profile/edit?userId=${record.getId()}`)
         });
       });
     } else {
