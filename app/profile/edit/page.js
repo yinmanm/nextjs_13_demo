@@ -1,10 +1,11 @@
 'use client';
 import { useState, useEffect } from 'react';
-import {useRouter} from 'next/navigation';
+import Router from 'next/router';
 import {base} from '../../api/airtable/route'
 
 const Profile =() => {
 
+  console.log(Router)
   // const [userId, setUseId] = useState(window.location.search.split('=')[1]);
   const [userId, setUseId] = useState(localStorage.getItem('userId'));
   const [loading, setLoading] = useState(false);
