@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Router from 'next/router';
 import {base} from '../api/airtable/route'
 
 export default function Example() {
@@ -59,7 +60,8 @@ export default function Example() {
       setLoading(false)
       localStorage.setItem('userId', id)
 
-      window.location.href = `/profile/edit?userId=${id}`;
+      // window.location.href = `/profile/edit?userId=${id}`;
+      Router.push(`/profile/edit?userId=${id}`)
     });
   }
 

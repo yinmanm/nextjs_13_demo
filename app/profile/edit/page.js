@@ -1,9 +1,11 @@
 'use client';
 import { useState, useEffect } from 'react';
+import Router from 'next/router';
 import {base} from '../../api/airtable/route'
 
-export default function Profile() {
+const Profile =() => {
 
+  console.log(Router)
   const [userId, setUseId] = useState(window.location.search.split('=')[1]);
   const [loading, setLoading] = useState(false);
 
@@ -47,7 +49,8 @@ export default function Profile() {
         });
         setLoading(false);
 
-        window.location.href = `/catches`;
+        // window.location.href = `/catches`;
+        Router.push('/catches');
       });
     } else {
       setLoading(false);
@@ -236,3 +239,5 @@ export default function Profile() {
     </div>
   )
 }
+
+export default Profile;
