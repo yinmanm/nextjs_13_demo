@@ -4,7 +4,7 @@ import {base} from '../../api/airtable/route'
 
 export default function Profile() {
 
-  const [userId, setUseId] = useState("");
+  const [userId, setUseId] = useState(location.search.split('=')[1]);
   const [loading, setLoading] = useState(false);
 
   const [first_name, setFirstName] = useState('');
@@ -55,8 +55,7 @@ export default function Profile() {
   }
 
   useEffect(() => {
-    setUseId(location.search.split('=')[1]);
-  }, [location.search]);
+  }, []);
 
   return (
     <div className="px-4 sm:px-6 lg:px-8 py-8">
