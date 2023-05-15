@@ -50,11 +50,11 @@ const Header = () => {
                 </Link>
               </div>
             </div>
-            <div className="hidden sm:ml-6 sm:flex sm:items-center">
+            <div className="hidden sm:ml-6">
               <div as="div" className="relative ml-3">
                 <div>
                   <button className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                    onClick={() => setNavOpen(!navOpen)}>
+                    >
                     <span className="sr-only">Open user menu</span>
                     <img
                       className="h-8 w-8 rounded-full"
@@ -69,7 +69,7 @@ const Header = () => {
                     <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                       <div>
                         <Link 
-                          href="/profile/edit"
+                          href="#"
                           className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
                           >
                           Your Profile
@@ -77,10 +77,10 @@ const Header = () => {
                       </div>
                       <div>
                         <Link 
-                          href="/sign_in"
+                          href="/sign_up"
                           className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
                           >
-                          Sign in
+                          Sign up
                         </Link>
                       </div>
                     </div>
@@ -123,7 +123,7 @@ const Header = () => {
                   Create a Buyer
               </Link>
             </div>
-            <div className="border-t border-gray-200 pb-3 pt-4">
+            <div className="hidden">
               <div className="flex items-center px-4">
                 <div className="flex-shrink-0">
                   <img
@@ -139,16 +139,16 @@ const Header = () => {
               </div>
               <div className="mt-3 space-y-1">
                 <Link 
-                  href="/profile/edit"
+                  href="#"
                   className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                   >
                   Your Profile
                 </Link>
                 <Link 
-                  href="/sign_in"
+                  href="/sign_up"
                   className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                   >
-                  Sign in
+                  Sign up
                 </Link>
               </div>
             </div>
