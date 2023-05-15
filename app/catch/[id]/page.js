@@ -6,9 +6,9 @@ const ItemShowPage = ({ params: { id } }) => {
 
   useEffect(() => {
     const fetchItems = async () => {
-      const res = await fetch(`/api/items/show?query=${id}`);
-      const data = await res.json();
-      setItems(data);
+      // const res = await fetch(`/api/items/show?query=${id}`);
+      // const data = await res.json();
+      // setItems(data);
     };
 
     fetchItems();
