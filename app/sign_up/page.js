@@ -34,7 +34,11 @@ export default function Example() {
         }
         records.forEach(function (record) {
           console.log(record.getId());
-          update(record.getId());
+          setLoading(false)
+          localStorage.setItem('userId', record.getId())
+
+          // window.location.href = `/profile/edit?userId=${id}`;
+          router.push(`/profile/edit?userId=${record.getId()}`)
         });
       });
     } else {
