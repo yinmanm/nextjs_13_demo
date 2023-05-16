@@ -187,7 +187,7 @@ export default function CatchNew() {
                             <tbody className="divide-y divide-gray-200 bg-white">
                               {items.map((item,index) => (
                                 <tr key={index}>
-                                  <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500">
+                                  <td className="py-4 pl-4 pr-3 text-sm text-gray-500">
                                     {item.description}
                                   </td>
                                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.quantity} kg</td>
