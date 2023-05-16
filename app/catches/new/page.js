@@ -154,7 +154,7 @@ export default function CatchNew() {
                       <select
                         id="buyer"
                         name="buyer"
-                        autoComplete="buyer"
+                        required
                         value={buyer}
                         onChange={(e) => {console.log(e); setBuyer(e.target.value)}}
                         className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
@@ -261,7 +261,7 @@ export default function CatchNew() {
                                 type="text"
                                 name="description"
                                 id="description"
-                                autoComplete="description"
+                                required
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
@@ -277,7 +277,7 @@ export default function CatchNew() {
                                 type="number"
                                 name="quantity"
                                 id="quantity"
-                                autoComplete="quantity"
+                                required
                                 value={quantity}
                                 onChange={(e) => setQuantity(e.target.value)}
                                 className="block w-full rounded-md border-0 py-2 px-4 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
@@ -299,7 +299,7 @@ export default function CatchNew() {
                                 type="number"
                                 name="price"
                                 id="price"
-                                autoComplete="price"
+                                required
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
                                 className="block w-full rounded-md border-0 py-2 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"

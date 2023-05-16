@@ -64,7 +64,7 @@ export default function BuyerNew() {
                         type="text"
                         name="first-name"
                         id="first-name"
-                        autoComplete="first-name"
+                        required
                         value={first_name}
                         onChange={(e) => setFirstName(e.target.value)}
                         className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
@@ -81,7 +81,7 @@ export default function BuyerNew() {
                         type="text"
                         name="last-name"
                         id="last-name"
-                        autoComplete="family-name"
+                        required
                         value={last_name}
                         onChange={(e) => setLastName(e.target.value)}
                         className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
@@ -98,7 +98,7 @@ export default function BuyerNew() {
                         type="number"
                         name="mobile"
                         id="mobile"
-                        autoComplete="mobile"
+                        required
                         value={mobile}
                         onChange={(e) => setMobile(e.target.value)}
                         className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
@@ -115,7 +115,7 @@ export default function BuyerNew() {
                         type="email"
                         name="email"
                         id="email"
-                        autoComplete="email"
+                        required
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"

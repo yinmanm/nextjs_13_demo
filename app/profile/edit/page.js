@@ -79,7 +79,7 @@ const Profile =() => {
                       type="text"
                       name="first-name"
                       id="first-name"
-                      autoComplete="given-name"
+                      required
                       value={first_name}
                       onChange={(e) => setFirstName(e.target.value)}
                       className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
@@ -96,7 +96,7 @@ const Profile =() => {
                       type="text"
                       name="last-name"
                       id="last-name"
-                      autoComplete="family-name"
+                      required
                       value={last_name}
                       onChange={(e) => setLastName(e.target.value)}
                       className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
@@ -113,7 +113,7 @@ const Profile =() => {
                       type="number"
                       name="mobile"
                       id="mobile"
-                      autoComplete="mobile"
+                      required
                       value={mobile}
                       onChange={(e) => setMobile(e.target.value)}
                       className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
@@ -130,7 +130,7 @@ const Profile =() => {
                       type="text"
                       name="entity-name"
                       id="entity-name"
-                      autoComplete="entity-name"
+                      required
                       value={entity_name}
                       onChange={(e) => setEntityName(e.target.value)}
                       className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
@@ -147,7 +147,7 @@ const Profile =() => {
                       type="number"
                       name="abn"
                       id="abn"
-                      autoComplete="abn"
+                      required
                       value={abn}
                       onChange={(e) => setAbn(e.target.value)}
                       className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
@@ -164,7 +164,7 @@ const Profile =() => {
                       type="text"
                       name="street"
                       id="street"
-                      autoComplete="street"
+                      required
                       value={street}
                       onChange={(e) => setStreet(e.target.value)}
                       className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
@@ -181,7 +181,7 @@ const Profile =() => {
                       type="text"
                       name="suburb"
                       id="suburb"
-                      autoComplete="suburb"
+                      required
                       value={suburb}
                       onChange={(e) => setSuburb(e.target.value)}
                       className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
@@ -198,7 +198,7 @@ const Profile =() => {
                       type="text"
                       name="state"
                       id="state"
-                      autoComplete="state"
+                      required
                       value={state}
                       onChange={(e) => setState(e.target.value)}
                       className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
@@ -215,7 +215,7 @@ const Profile =() => {
                       type="text"
                       name="post-code"
                       id="post-code"
-                      autoComplete="post-code"
+                      required
                       value={post_code}
                       onChange={(e) => setPostCode(e.target.value)}
                       className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
