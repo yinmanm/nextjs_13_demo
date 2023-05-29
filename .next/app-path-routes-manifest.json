@@ -1,15 +1,15 @@
 {
-  "/page": "/",
   "/favicon.ico/route": "/favicon.ico",
+  "/page": "/",
   "/callback/page": "/callback",
   "/catches/page": "/catches",
-  "/dashboard/page": "/dashboard",
   "/sign_in/page": "/sign_in",
+  "/dashboard/page": "/dashboard",
   "/api/airtable/route": "/api/airtable",
-  "/buyer/new/page": "/buyer/new",
   "/catch/[id]/page": "/catch/[id]",
   "/catches/new/page": "/catches/new",
   "/profile/edit/page": "/profile/edit",
-  "/catches/show/[id]/page": "/catches/show/[id]",
-  "/chat/show/[id]/page": "/chat/show/[id]"
+  "/buyer/new/page": "/buyer/new",
+  "/chat/show/[id]/page": "/chat/show/[id]",
+  "/catches/show/[id]/page": "/catches/show/[id]"
 }

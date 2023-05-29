@@ -652,7 +652,7 @@ class NextScript extends _react.default.Component {
                 return (0, _htmlescape.htmlEscapeJsonString)(data);
             }
             const bytes =  false ? 0 : Buffer.from(data).byteLength;
-            const prettyBytes = (__webpack_require__(8065)/* ["default"] */ .Z);
+            const prettyBytes = (__webpack_require__(5955)/* ["default"] */ .Z);
             if (largePageDataBytes && bytes > largePageDataBytes) {
                 if (true) {
                     largePageDataWarnings.add(__NEXT_DATA__.page);
@@ -791,7 +791,7 @@ function getProperError(err) {
 
 /***/ }),
 
-/***/ 8065:
+/***/ 5955:
 /***/ ((__unused_webpack_module, exports) => {
 
 var __webpack_unused_export__;

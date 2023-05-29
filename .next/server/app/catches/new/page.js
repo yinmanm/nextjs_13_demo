@@ -60,7 +60,7 @@ module.exports = require("next/dist/compiled/react-server-dom-webpack-experiment
 
 /***/ }),
 
-/***/ 1090:
+/***/ 5232:
 /***/ ((module) => {
 
 "use strict";
@@ -322,14 +322,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 6214:
+/***/ 147:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 const actions = {
+'fc5ac97d6813b4151e14ee1e830c166f29bc2303': () => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 2956)).then(mod => mod["default"]),
 'ecaa478d5d44c2bd4bf4b2639ea1aa5821711eb9': () => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 306)).then(mod => mod["default"]),
 '14f9872ba0fb2262d7275f4ce8a8db2308e7dfd5': () => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 1099)).then(mod => mod["default"]),
-'fc5ac97d6813b4151e14ee1e830c166f29bc2303': () => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 2956)).then(mod => mod["default"]),
 '7f8dfb8e22a35e6f3a95a9ea31b81c0690d6727d': () => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 3965)).then(mod => mod["default"]),
 }
 
@@ -345,9 +345,9 @@ async function endpoint(id, ...args) {
 
 // Using CJS to avoid this to be tree-shaken away due to unused exports.
 module.exports = {
+  'fc5ac97d6813b4151e14ee1e830c166f29bc2303': endpoint.bind(null, 'fc5ac97d6813b4151e14ee1e830c166f29bc2303'),
   'ecaa478d5d44c2bd4bf4b2639ea1aa5821711eb9': endpoint.bind(null, 'ecaa478d5d44c2bd4bf4b2639ea1aa5821711eb9'),
   '14f9872ba0fb2262d7275f4ce8a8db2308e7dfd5': endpoint.bind(null, '14f9872ba0fb2262d7275f4ce8a8db2308e7dfd5'),
-  'fc5ac97d6813b4151e14ee1e830c166f29bc2303': endpoint.bind(null, 'fc5ac97d6813b4151e14ee1e830c166f29bc2303'),
   '7f8dfb8e22a35e6f3a95a9ea31b81c0690d6727d': endpoint.bind(null, '7f8dfb8e22a35e6f3a95a9ea31b81c0690d6727d'),
 }
 

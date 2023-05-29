@@ -68,7 +68,7 @@ module.exports = require("next/dist/lib/import-next-warning");
 
 /***/ }),
 
-/***/ 1090:
+/***/ 5232:
 /***/ ((module) => {
 
 "use strict";
@@ -330,13 +330,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ 7665:
+/***/ 1132:
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 
 const actions = {
-'ecaa478d5d44c2bd4bf4b2639ea1aa5821711eb9': () => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 306)).then(mod => mod["default"]),
 '2f51557dc1b28acd19225d0f4e5187ad3eacf20e': () => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 8367)).then(mod => mod["default"]),
+'ecaa478d5d44c2bd4bf4b2639ea1aa5821711eb9': () => Promise.resolve(/* import() eager */).then(__webpack_require__.bind(__webpack_require__, 306)).then(mod => mod["default"]),
 }
 
 async function endpoint(id, ...args) {
@@ -351,8 +351,8 @@ async function endpoint(id, ...args) {
 
 // Using CJS to avoid this to be tree-shaken away due to unused exports.
 module.exports = {
-  'ecaa478d5d44c2bd4bf4b2639ea1aa5821711eb9': endpoint.bind(null, 'ecaa478d5d44c2bd4bf4b2639ea1aa5821711eb9'),
   '2f51557dc1b28acd19225d0f4e5187ad3eacf20e': endpoint.bind(null, '2f51557dc1b28acd19225d0f4e5187ad3eacf20e'),
+  'ecaa478d5d44c2bd4bf4b2639ea1aa5821711eb9': endpoint.bind(null, 'ecaa478d5d44c2bd4bf4b2639ea1aa5821711eb9'),
 }
 
 
