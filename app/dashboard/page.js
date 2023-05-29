@@ -12,7 +12,7 @@ export default async function Dashboard() {
   //   return result;
   // }
 
-  const chatGroupList = await getChatListApi();
+  const chatGroupList = await getChatListApi() || [];
   console.log('client chatGroupList', chatGroupList)
 
   return (

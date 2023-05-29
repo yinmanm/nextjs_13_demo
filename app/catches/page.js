@@ -1,10 +1,10 @@
-'use client';
+// 'use client';
 import Link from 'next/link';
 import getCatchListApi from '../api/catches/list';
 
 export default async function Catches() {
 
-  const catchesList = await getCatchListApi();
+  const catchesList = await getCatchListApi() || [];
   console.log('catchesList',catchesList)
 
   return (
@@ -25,7 +25,7 @@ export default async function Catches() {
                     <a href={`/catches/show/${catchItem.id}`} className="focus:outline-none">
                       <span className="absolute inset-0" aria-hidden="true" />
                       <p className="text-sm font-medium text-gray-900">{catchItem.buyer.email}</p>
-                      <p className="mt-1 truncate text-sm text-gray-500">{catchItem.data_landed}</p>
+                      <p className="mt-1 truncate text-sm text-gray-500">{JSON.stringify(catchItem.data_landed)}</p>
                       <div className="overflow-x-auto">
                         <div className="inline-block min-w-full py-2 align-middle">
                           <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5">
@@ -53,6 +53,7 @@ export default async function Catches() {
                                 { catchItem.item.map((item,index) => (
                                   <tr key={index}>
                                     <td className="py-4 pl-4 pr-3 text-sm text-gray-500">
+                                      {item.categoryName}
                                     </td>
                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.description}</td>
                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.quantity} kg</td>

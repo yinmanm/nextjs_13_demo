@@ -1,8 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import create from '../../api/buyer/create';
-import getBuyerList from '../../api/buyer/list';
+import createBuyerApi from '../../api/buyer/create';
 
 export default function BuyerNew() {
 
@@ -29,7 +28,7 @@ export default function BuyerNew() {
   
       if(first_name && last_name && mobile && email) {
 
-        const result = await create(data);
+        const result = await createBuyerApi(JSON.stringify(data));
         if(result) {
           router.replace('/catches');
         }
