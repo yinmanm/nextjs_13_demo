@@ -1,9 +1,12 @@
 'use client';
 import "flatpickr/dist/themes/material_green.css";
 import Flatpickr from "react-flatpickr";
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import {base} from '../../api/airtable/route'
+import { useState, useEffect } from 'react';
+import getBuyerListApi from '../../api/buyer/list';
+import getCategoryListApi from '../../api/category/list';
+import catchesCreateApi from '../../api/catches/create';
+import itemCreateApi from '../../api/item/create';
 
 export default function CatchNew() {
 
@@ -11,88 +14,83 @@ export default function CatchNew() {
 
   const [loading, setLoading] = useState(false);
   const [itemLoading, setItemLoading] = useState(false);
+
   const [buyerList, setBuyerList] = useState([]);
+  const [categoryList, setCategoryList] = useState([]);
 
   const [modal, setModal] = useState(false);
   const [date, setDate] = useState(new Date())
   const [buyer, setBuyer] = useState("")
-  const [buyerEmail, setBuyerEmail] = useState("")
   const [items, setItems] = useState([])
+  const [category, setCategory] = useState("")
+  const [categoryName, setCategoryName] = useState("")
   const [description, setDescription] = useState("")
   const [quantity, setQuantity] = useState(0)
   const [price, setPrice] = useState(0)
 
+  const getBuyerList = async () => {
+    setBuyerList(await getBuyerListApi());
+  }
+  const getCategoryList = async () => {
+    setCategoryList(await getCategoryListApi());
+  }
+
+  const categoryChange = async (e) => {
+    setCategory(e.target.value);
+    const selectTag = document.getElementById('category');
+    const index = selectTag.selectedIndex;
+    setCategoryName(selectTag.options[index].text);
+  }
+
   const handleSubmit = async (e) => {
+
     setLoading(true);
     e.preventDefault();
 
     if(date && buyer && items.length>0) {
+      try {
+        // add catch
+        const data = {
+          data_landed: date,
+          buyer: { connect: { id: Number(buyer) } },
+          user: { connect: { id: 1 } },
+        }
+        const result = await catchesCreateApi(JSON.stringify(data));
+        console.log('client', result)
 
-      base('Buyer').find(buyer, function(err, record) {
-        if (err) { console.error(err); return; }
-        setBuyerEmail(record.fields.Email)
-      });
-
-      base('Catches').create([
-        {
-          "fields": {
-            "DateLanded": date,
-            "Buyer": buyer,
-            "BuyerEmail": buyerEmail
+        // add item
+        items.map(async item => {
+          const data = {
+            category: { connect: { id: Number(item.category)} },
+            categoryName: item.categoryName,
+            description: item.description,
+            quantity: Number(item.quantity),
+            price: Number(item.price),
+            total: Number(item.quantity) * Number(item.price),
+            catches: { connect: { id: Number(result.id)}}
           }
-        }
-      ], function(err, records) {
-        if (err) {
-          console.error(err);
-          setLoading(false);
-          return;
-        }
-        records.forEach(function (record) {
-          updateCatch(record);
-        });
-      });
+          await itemCreateApi(JSON.stringify(data));
+        })
+
+        router.push('/catches');
+
+        setLoading(false);
+
+      } catch(error) {
+        console.log(error);
+        setLoading(false);
+      }
     } else {
       setLoading(false);
     }
   };
 
-  const updateCatch = async (record) => {
-    let createList = items.map((item) => {
-      return ({
-        "fields": {
-          "CatchId": record.id,
-          "Description": item.description,
-          "Quantity": Number(item.quantity),
-          "Price": Number(item.price),
-        }
-      })
-    })
-    console.log('111',createList)
-    createItems(createList);
-  }
-
-  const createItems = async (createList) => {
-    base('Items').create([...createList], function(err, records) {
-      if (err) {
-        console.error(err);
-        setLoading(false);
-        return;
-      }
-      else {
-        setLoading(false);
-
-        // window.location.href = `/catches`;
-        router.push('/catches');
-      }
-    });
-  }
-
   const addItem = async (e) => {
     setItemLoading(true);
     e.preventDefault();
 
-    if(description && quantity && price) {
-      setItems([...items].concat([{description, quantity, price}]))
+    if(category && description && quantity && price) {
+      setItems([...items].concat([{category, categoryName, description, quantity, price}]))
       setDescription("")
       setQuantity(0)
       setPrice(0)
@@ -102,22 +100,24 @@ export default function CatchNew() {
       setItemLoading(false);
     }
   }
-  
-  const getBuyer = async () => {
-    base('Buyer').select({
-      view: 'Grid view'
-    }).firstPage(function(err, records) {
-      if (err) { console.error(err); return; }
-      setBuyerList([...records]);
-      if(records.length>0) {
-        setBuyer(records[0].id)
-      }
-    });
+
+  const getTotal = (q, p) => {
+    const total = Number(q) * Number(p);
+    return total;
   }
 
-  useEffect(() => {
-    getBuyer();
-  }, [base]);
+  useEffect(()=>{
+    getBuyerList();
+    getCategoryList();
+  },[])
+
+  useEffect(()=>{
+    setBuyer(buyerList[0]?.id);
+  }, [buyerList])
+  useEffect(()=>{
+    setCategory(categoryList[0]?.id);
+    setCategoryName(categoryList[0]?.name);
+  }, [categoryList])
   
   return (
     <div>
@@ -156,11 +156,11 @@ export default function CatchNew() {
                         name="buyer"
                         required
                         value={buyer}
-                        onChange={(e) => {console.log(e); setBuyer(e.target.value)}}
+                        onChange={(e) => {setBuyer(e.target.value)}}
                         className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
                       >
                         {buyerList.map((item, index) => (
-                          <option key={index} value={item.id}>{item.fields.Email}</option>
+                          <option key={item.id} value={item.id}>{item.email}</option>
                         ))}
                       </select>
                     </div>
@@ -174,13 +174,19 @@ export default function CatchNew() {
                             <thead className="bg-gray-50">
                               <tr>
                                 <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-normal text-gray-500">
+                                  Category
+                                </th>
+                                <th scope="col" className="px-3 py-3.5 text-left text-sm font-normal text-gray-500">
                                   Description
                                 </th>
                                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-normal text-gray-500">
                                   Quantity
                                 </th>
-                                <th scope="col" className="py-3.5 pr-4 pl-3 text-right text-sm font-normal text-gray-500">
+                                <th scope="col" className="px-3 py-3.5 text-left text-sm font-normal text-gray-500">
                                   Price
+                                </th>
+                                <th scope="col" className="py-3.5 pr-4 pl-3 text-right text-sm font-normal text-gray-500">
+                                  Total
                                 </th>
                               </tr>
                             </thead>
@@ -188,11 +194,13 @@ export default function CatchNew() {
                               {items.map((item,index) => (
                                 <tr key={index}>
                                   <td className="py-4 pl-4 pr-3 text-sm text-gray-500">
-                                    {item.description}
+                                    {item.categoryName}
                                   </td>
+                                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.description}</td>
                                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.quantity} kg</td>
+                                  <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">${item.price}/kg</td>
                                   <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
-                                    ${item.price}/kg
+                                    ${getTotal(item.quantity, item.price)}
                                   </td>
                                 </tr>
                               ))}
@@ -252,6 +260,25 @@ export default function CatchNew() {
                         <h2 className="text-base font-semibold leading-7 text-gray-900">Add new item</h2>
 
                         <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
+                          <div className="col-span-full">
+                            <label htmlFor="category" className="block text-sm font-medium leading-6 text-gray-900">
+                              Category
+                            </label>
+                            <div className="mt-2">
+                              <select
+                                id="category"
+                                name="category"
+                                required
+                                value={category}
+                                onChange={(e) => {categoryChange(e)}}
+                                className="block w-full rounded-md border-0 py-2 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
+                              >
+                                {categoryList.map((item, index) => (
+                                  <option key={item.id} value={item.id}>{item.name}</option>
+                                ))}
+                              </select>
+                            </div>
+                          </div>
                           <div className="col-span-full">
                             <label htmlFor="description" className="block text-sm font-medium leading-6 text-gray-900">
                               Description

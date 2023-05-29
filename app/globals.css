@@ -24,3 +24,7 @@ body {
 button:disabled{
   @apply opacity-75 cursor-not-allowed shadow-none;
 }
+
+.flatpickr-input.flatpickr-mobile {
+  display: none;
+}

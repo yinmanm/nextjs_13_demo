@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import classNames from "classnames";
 
-const Header = () => {
+const Header = ({userName}) => {
 
   const [navOpen, setNavOpen] = useState(false);
 
@@ -48,8 +48,14 @@ const Header = () => {
                   className={classNames(pathname.startsWith('/buyer/new') ? "border-indigo-500" : "border-transparent hover:border-gray-300 hover:text-gray-700", "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium text-gray-900")}>
                     Create a Buyer
                 </Link>
+                <Link 
+                  href="/dashboard"
+                  className={classNames(pathname.startsWith('/dashboard') ? "border-indigo-500" : "border-transparent hover:border-gray-300 hover:text-gray-700", "inline-flex items-center border-b-2 px-1 pt-1 text-sm font-medium text-gray-900")}>
+                    Dashboard
+                </Link>
               </div>
             </div>
+            <div>{userName}</div>
             <div className="hidden sm:ml-6">
               <div as="div" className="relative ml-3">
                 <div>
@@ -77,10 +83,10 @@ const Header = () => {
                       </div>
                       <div>
                         <Link 
-                          href="/sign_up"
+                          href="/sign_in"
                           className='block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100'
                           >
-                          Sign up
+                          Sign in
                         </Link>
                       </div>
                     </div>
@@ -122,6 +128,12 @@ const Header = () => {
                 >
                   Create a Buyer
               </Link>
+              <Link 
+                href="/dashboard"
+                className={classNames(pathname.startsWith('/dashboard') ? 'border-indigo-500 bg-indigo-50 text-indigo-700' : 'border-transparent text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700', "block border-l-4  py-2 pl-3 pr-4 text-base font-medium")}
+                >
+                  Dashboard
+              </Link>
             </div>
             <div className="hidden">
               <div className="flex items-center px-4">
@@ -145,10 +157,10 @@ const Header = () => {
                   Your Profile
                 </Link>
                 <Link 
-                  href="/sign_up"
+                  href="/sign_in"
                   className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800"
                   >
-                  Sign up
+                  Sign in
                 </Link>
               </div>
             </div>

@@ -1,7 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import {base} from '../../api/airtable/route'
+import create from '../../api/buyer/create';
+import getBuyerList from '../../api/buyer/list';
 
 export default function BuyerNew() {
 
@@ -15,40 +16,34 @@ export default function BuyerNew() {
   const [email, setEmail] = useState('');
 
   const handleSubmit = async (e) => {
-    setLoading(true);
-    e.preventDefault();
 
-    if(first_name && last_name && mobile && email) {
-      base('Buyer').create([
-        {
-          "fields": {
-            "FirstName": first_name,
-            "LastName": last_name,
-            "Mobile": mobile,
-            "Email": email
-          }
-        }
-      ], function(err, records) {
-        if (err) {
-          console.error('error',err);
-          setLoading(false);
-          return;
-        }
-        setLoading(false);
+    try {
+      setLoading(true);
+      e.preventDefault();
+      const data = {
+        first_name: first_name,
+        last_name: last_name,
+        mobile: mobile,
+        email: email
+      }
+  
+      if(first_name && last_name && mobile && email) {
 
-        // redirect('/catches');
-        window.location.href = '/catches'
-        router.push(`catches`)
-      });
-    } else {
-      setLoading(false);
+        const result = await create(data);
+        if(result) {
+          router.replace('/catches');
+        }
+      }
+    } catch(error) {
+      console.log(error)
     }
+
   }
 
   return (
     <div>
       <div className="px-4 sm:px-6 lg:px-8 py-8">
-        <form onSubmit={handleSubmit} className="" action="#" method="POST">
+        <form onSubmit={handleSubmit} className="">
           <div className="max-w-xl mx-auto">
             <div className="">
               <div className="">
@@ -95,7 +90,7 @@ export default function BuyerNew() {
                     </label>
                     <div className="mt-2">
                       <input
-                        type="number"
+                        type="text"
                         name="mobile"
                         id="mobile"
                         required
