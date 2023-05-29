@@ -4,12 +4,18 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default async function handler(req, res) {
+  const id = Number(req) || 2;
   try {
     const result = await prisma.catches.findFirst({
       where: {
-        id: req
+        id: id
       },
       include: {
+        buyer: {
+          select: {
+            email: true,
+          }
+        },
         item: true
       }
     })

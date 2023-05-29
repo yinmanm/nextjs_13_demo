@@ -4,10 +4,12 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default async function handel(req, res) {
+  console.log('req', req)
+  const id = Number(req) || 1;
   try {
     const result = await prisma.chat.findMany({
       where: {
-        chatGroupId: 2
+        chatGroupId: id
       },
       include: {
         author: true,
