@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,117 +8,93 @@ datasource db {
 }
 
 model User {
-  id            Int         @id @default(autoincrement())
-  email         String      @unique
-  name          String?
-  userToken     String?
-  profile       Profile?
-  catches       Catches[]
-  chatGroups    ChatGroup[]
-  chats         Chat[]
+  id         Int         @id @default(autoincrement())
+  email      String      @unique
+  name       String?
+  userToken  String?
+  catches    Catches[]
+  chats      Chat[]
+  profile    Profile?
+  chatGroups ChatGroup[]
 }
 
 model Profile {
-  id            Int      @id @default(autoincrement())
-  first_name    String
-  last_name     String
-  mobile        String?
-  entity_name   String
-  abn           String?
-  street        String
-  suburb        String?
-  state         String?
-  post_code     String?
-  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId        Int      @unique
+  id          Int     @id @default(autoincrement())
+  first_name  String
+  last_name   String
+  mobile      String?
+  entity_name String
+  abn         String?
+  street      String
+  suburb      String?
+  state       String?
+  post_code   String?
+  userId      Int     @unique
+  user        User    @relation(fields: [userId], references: [id])
 }
 
 model Catches {
-  id           Int        @id @default(autoincrement())
-  data_landed  DateTime   @default(now())
-  buyer        Buyer      @relation(fields: [buyerId], references: [id])
-  buyerId      Int
-  item         Item[]
-  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId       Int        
+  id          Int      @id @default(autoincrement())
+  data_landed DateTime @default(now())
+  buyerId     Int
+  userId      Int
+  buyer       Buyer    @relation(fields: [buyerId], references: [id])
+  user        User     @relation(fields: [userId], references: [id])
+  item        Item[]
 }
 
 model Buyer {
-  id           Int       @id @default(autoincrement())
-  first_name   String
-  last_name    String
-  mobile       String?
-  email        String    @unique
-  catches      Catches[]
+  id         Int       @id @default(autoincrement())
+  first_name String
+  last_name  String
+  mobile     String?
+  email      String    @unique
+  catches    Catches[]
 }
 
 model BpBuyer {
-  id           Int       @id @default(autoincrement())
-  first_name   String
-  last_name    String
-  mobile       String?
-  email        String    @unique
+  id         Int     @id @default(autoincrement())
+  first_name String
+  last_name  String
+  mobile     String?
+  email      String  @unique
 }
 
 model Item {
-  id            Int        @id @default(autoincrement())
-  category      Category   @relation(fields: [categoryId], references: [id])
-  categoryId    Int
-  categoryName  String
-  description   String
-  quantity      Float
-  price         Float
-  total         Float
-  catches       Catches    @relation(fields: [catchId], references: [id], onDelete: Cascade)
-  catchId       Int
+  id           Int      @id @default(autoincrement())
+  categoryId   Int
+  categoryName String
+  description  String
+  quantity     Float
+  price        Float
+  total        Float
+  catchId      Int
+  catches      Catches  @relation(fields: [catchId], references: [id])
+  category     Category @relation(fields: [categoryId], references: [id])
 }
 
 model Category {
-  id           Int       @id @default(autoincrement())
-  name         String
-  item         Item[]
+  id   Int    @id @default(autoincrement())
+  name String
+  item Item[]
 }
 
 model ChatGroup {
-  id          Int       @id @default(autoincrement())
-  user        User[]
-  title       String
-  createAt    DateTime
-  chats       Chat[]
+  id       Int      @id @default(autoincrement())
+  title    String
+  createAt DateTime
+  chats    Chat[]
+  user     User[]
 }
 
 model Chat {
-  id           Int          @id @default(autoincrement())
-  author       User         @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId     Int
-  chatGroup    ChatGroup    @relation(fields: [chatGroupId], references: [id])
-  chatGroupId  Int
-  content      String
-  createAt     DateTime
-  isCatch      Boolean      @default(false)
-  catchId      Int
+  id          Int       @id @default(autoincrement())
+  authorId    Int
+  chatGroupId Int
+  content     String
+  createAt    DateTime
+  isCatch     Boolean   @default(false)
+  catchId     Int
+  author      User      @relation(fields: [authorId], references: [id])
+  chatGroup   ChatGroup @relation(fields: [chatGroupId], references: [id])
 }
-
-
-// 多对多关系
-// model City {
-//   id            Int         @id @default(autoincrement())
-//   name          String
-//   products      ProductsOnCities[]
-// }
-
-// model Product {
-//   id            Int         @id @default(autoincrement())
-//   title         String
-//   price         Int
-//   cities        ProductsOnCities[]
-// }
-
-// model ProductsOnCities {
-//   city          City        @relation(fields: [cityId], references: [id])
-//   cityId        Int
-//   product       Product     @relation(fields: [productId], references: [id])
-//   productId     Int
-
-//   @@id([cityId, productId])
-// }

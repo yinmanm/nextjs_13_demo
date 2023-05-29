@@ -1,0 +1,9 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[258],{3536:function(e,t,n){Promise.resolve().then(n.bind(n,3733))},3733:function(e,t,n){"use strict";n.r(t),n.d(t,{default:function(){return s}});var r=n(3955),o=n(6008);async function c(e){return await fetch("https://bpx-api.gfresh.cc/oauth/token",{method:"POST",body:JSON.stringify({client_id:"buJi0mkdSEPG88ALzzND7kg0wq-76_txIx-b85EL_wY",client_secret:"DjTe6gQ7hy-ImJ5SGs07xw2ydalRgAIMABbbSaSP-ts",code:e,grant_type:"authorization_code",redirect_uri:"http://localhost:3000/callback"}),headers:{accept:"application/json"}}).then(e=>e.json()).then(e=>{console.log(e)}).catch(e=>{console.error(e)}),"nothing"}async function s(){let e=(0,o.useSearchParams)(),t=e.get("code");return t&&(console.log("code",t),c(t)),(0,r.jsx)("div",{})}},3009:function(e,t,n){"use strict";/**
+ * @license React
+ * react-jsx-runtime.production.min.js
+ *
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */var r=n(2310),o=Symbol.for("react.element"),c=Symbol.for("react.fragment"),s=Object.prototype.hasOwnProperty,i=r.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner,a={key:!0,ref:!0,__self:!0,__source:!0};function u(e,t,n){var r,c={},u=null,f=null;for(r in void 0!==n&&(u=""+n),void 0!==t.key&&(u=""+t.key),void 0!==t.ref&&(f=t.ref),t)s.call(t,r)&&!a.hasOwnProperty(r)&&(c[r]=t[r]);if(e&&e.defaultProps)for(r in t=e.defaultProps)void 0===c[r]&&(c[r]=t[r]);return{$$typeof:o,type:e,key:u,ref:f,props:c,_owner:i.current}}t.Fragment=c,t.jsx=u,t.jsxs=u},3955:function(e,t,n){"use strict";e.exports=n(3009)},6008:function(e,t,n){e.exports=n(167)}},function(e){e.O(0,[875,474,744],function(){return e(e.s=3536)}),_N_E=e.O()}]);
