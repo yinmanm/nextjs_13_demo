@@ -1,19 +1,19 @@
 'use client';
-import { useSession, SignIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+// import { useSession, SignIn } from 'next-auth/react';
+// import { useRouter } from 'next/navigation';
 
 export default function LoginIn() {
 
   const client_id = process.env.CLIENT_ID;
 
-  const { data: session } = useSession();
-  const router = useRouter();
+  // const { data: session } = useSession();
+  // const router = useRouter();
 
-  console.log('session',session)
+  // console.log('session',session)
 
-  if(session) {
-    router.push('/catches')
-  } else {
+  // if(session) {
+  //   router.push('/catches')
+  // } else {
     return (
       <>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -45,7 +45,7 @@ export default function LoginIn() {
     )
   }
 
-}
+// }
 
 
 
