@@ -2,10 +2,11 @@ import getChatListApi from '../../../api/chat/list';
 
 export default async function ChatList(prop) {
 
-  console.log('prop', prop)
-  console.log('prop', prop.id)
+  console.log('prop', prop);
+  const { id } = {...prop};
+  console.log('id', id)
 
-  if(prop.id) {
+  if(prop && prop.id) {
     const chatList = await getChatListApi(prop.id);
 
     return (

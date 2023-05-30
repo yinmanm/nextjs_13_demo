@@ -11,9 +11,9 @@ export default function Layout({children}) {
   // const not_need_redirect_url = ['/', '/sign_in', '/sign_up', '/callback'];
 
   return (
-    <div className="">
+    <div className="min-h-screen flex flex-col">
       <Header />
-      <main className=''>{children}</main>
+      <main className='flex-1 flex flex-col'>{children}</main>
     </div>
   )
 
