@@ -1,16 +1,26 @@
-import findShowCatchApi from '../../../api/catches/show';
+'use client';
+import { useState, useEffect } from 'react';
+import { useParams } from 'next/navigation';
+export default function CatchDetail({getCatchDetail}) {
 
-export default async function CatchDetail(prop) {
+  const params = useParams();
 
-  console.log('prop', prop)
-  console.log('prop', prop.id)
+  const [detail, setDetail] = useState();
 
-  if(prop.id) {
-    const detail = await findShowCatchApi(prop.id);
+  const getDetail = async (id) => {
+    setDetail(await getCatchDetail(id));
+  }
 
-    return (
-      <div>
-        <div className='px-4 sm:px-6 lg:px-8'>
+  useEffect(()=>{
+    if(params && params.id) {
+      getDetail(params.id);
+    }
+  },[params.id])
+
+  return (
+    <div>
+      <div className='px-4 sm:px-6 lg:px-8'>
+        { detail && (
           <div className='max-w-xl mx-auto py-5 md:py-14'>
             <div className='pb-5 px-4 sm:px-6 border-b border-gray-100'>
               <h1 className='text-xl font-medium text-center'>Catch #{detail.id}</h1>
@@ -51,7 +61,7 @@ export default async function CatchDetail(prop) {
                                 <td className="py-4 pl-4 pr-3 text-sm text-gray-500">
                                   {item.categoryName}
                                 </td>
-                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.description}</td>
+                                <td className="px-3 py-4 text-sm text-gray-500">{item.description}</td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.quantity} kg</td>
                                 <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">${item.price}/kg</td>
                                 <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
@@ -68,12 +78,8 @@ export default async function CatchDetail(prop) {
               </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
-    )
-  }
-  return (
-    <div></div>
+    </div>
   )
-  
 }

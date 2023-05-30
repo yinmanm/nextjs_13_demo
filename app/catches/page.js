@@ -23,7 +23,6 @@ export default async function Catches() {
                 >
                   <div className="min-w-0 flex-1">
                     <a href={`/catches/show/${catchItem.id}`} className="focus:outline-none">
-                      <span className="absolute inset-0" aria-hidden="true" />
                       <p className="text-sm font-medium text-gray-900">{catchItem.buyer.email}</p>
                       <p className="mt-1 truncate text-sm text-gray-500">{JSON.stringify(catchItem.data_landed)}</p>
                       <div className="overflow-x-auto">
@@ -55,7 +54,7 @@ export default async function Catches() {
                                     <td className="py-4 pl-4 pr-3 text-sm text-gray-500">
                                       {item.categoryName}
                                     </td>
-                                    <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.description}</td>
+                                    <td className="px-3 py-4 text-sm text-gray-500">{item.description}</td>
                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{item.quantity} kg</td>
                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">${item.price}/kg</td>
                                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">

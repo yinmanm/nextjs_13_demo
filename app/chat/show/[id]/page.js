@@ -1,22 +1,19 @@
-'use client';
-import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
-import ChatList from './_list';
+import getChatGroupShow from '../../../api/chatGroup/show';
+import MessageList from './_list';
 
-export default function ChatShow() {
+export default async function ChatShow() {
 
-  const params = useParams();
-  const id = params.id;
+  async function getChatShow(id) {
+    "use server";
 
-  if(id) {
-    return (
-      <div>
-        <ChatList id={id}/>
-      </div>
-    )
+    const list = await getChatGroupShow(id);
+    return list;
   }
 
   return (
-    <div></div>
+    <div className='flex-1 flex flex-col'>
+      <MessageList getChatShow={getChatShow} />
+    </div>
   )
+  
 }
