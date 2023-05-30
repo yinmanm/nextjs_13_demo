@@ -10,7 +10,7 @@ export default async function Catches() {
   return (
     <div>
       <div className='px-4 sm:px-6 lg:px-8'>
-        <div className='max-w-xl mx-auto py-8 md:py-14'>
+        <div className='max-w-3xl mx-auto py-8 md:py-14'>
           <h2 className="text-base sm:text-2xl font-semibold leading-7 sm:leading-tight text-gray-900">Your catches</h2>
           <ul role="list" className="mt-6 space-y-3">
             {catchesList.length == 0 ? (

@@ -18,7 +18,7 @@ export default function ChatList(props) {
     if(params && params.id) {
       setData(params.id);
     }
-  },[params])
+  },[params.id])
 
   return (
     <div className='flex-1 flex flex-col py-5 md:py-14'>

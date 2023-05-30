@@ -123,12 +123,12 @@ export default function CatchNew() {
     <div>
       <div className="px-4 sm:px-6 lg:px-8 py-8">
         <form onSubmit={handleSubmit} className="" action="#" method="POST">
-          <div className="max-w-xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <div className="">
               <div className="">
                 <h2 className="text-base sm:text-2xl font-semibold leading-7 sm:leading-tight text-gray-900">Create new catch</h2>
                 <div className="mt-6 grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6">
-                  <div className="col-span-full">
+                  <div className="col-span-full sm:col-span-3">
                     <label htmlFor="date-landed" className="block text-sm font-medium leading-6 text-gray-900">
                       Date landed
                     </label>
@@ -146,7 +146,7 @@ export default function CatchNew() {
                     </div>
                   </div>
                 
-                  <div className="col-span-full">
+                  <div className="col-span-full sm:col-span-3">
                     <label htmlFor="buyer" className="block text-sm font-medium leading-6 text-gray-900">
                       Buyer
                     </label>
@@ -180,10 +180,10 @@ export default function CatchNew() {
                                   Description
                                 </th>
                                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-normal text-gray-500">
-                                  Quantity
+                                  Quantity(kg)
                                 </th>
                                 <th scope="col" className="px-3 py-3.5 text-left text-sm font-normal text-gray-500">
-                                  Price
+                                  Price(/kg)
                                 </th>
                                 <th scope="col" className="py-3.5 pr-4 pl-3 text-right text-sm font-normal text-gray-500">
                                   Total
@@ -204,18 +204,73 @@ export default function CatchNew() {
                                   </td>
                                 </tr>
                               ))}
+                              <tr>
+                                <td className="py-4 pl-4 pr-3 text-sm text-gray-500">
+                                  <select
+                                    id="category"
+                                    name="category"
+                                    value={category}
+                                    onChange={(e) => {categoryChange(e)}}
+                                    className="block w-32 rounded-md border-gray-200"
+                                  >
+                                    {categoryList.map((item, index) => (
+                                      <option key={item.id} value={item.id}>{item.name}</option>
+                                    ))}
+                                  </select>
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  <input
+                                    type="text"
+                                    name="description"
+                                    id="description"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    className="block rounded-md border-gray-200"
+                                  />
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  <input
+                                    type="number"
+                                    name="quantity"
+                                    id="quantity"
+                                    value={quantity}
+                                    onChange={(e) => setQuantity(e.target.value)}
+                                    className="block w-24 rounded-md border-gray-200"
+                                  />
+                                </td>
+                                <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                  <input
+                                    type="number"
+                                    name="price"
+                                    id="price"
+                                    value={price}
+                                    onChange={(e) => setPrice(e.target.value)}
+                                    className="block w-24 rounded-md border-gray-200"
+                                  />
+                                </td>
+                                <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
+                                  <button
+                                    type="button"
+                                    disabled={itemLoading}
+                                    className="rounded bg-indigo-600 px-2 py-1 text-sm font-semibold text-white shadow-sm ring-1 ring-inset ring-indigo-700 hover:bg-indigo-70"
+                                    onClick={addItem}
+                                  >
+                                    Add new item
+                                  </button>
+                                </td>
+                              </tr>
                             </tbody>
                           </table>
                         </div>
                       </div>
                     </div>
-                    <button
+                    {/* <button
                       type="button"
                       className="mt-3 rounded bg-white px-2 py-1 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                       onClick={()=>{ setModal(!modal) }}
                     >
                       Add new item
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>
