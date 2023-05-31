@@ -22,7 +22,7 @@ export default async function handler(req, res) {
     console.log('find result',result)
     return result;
   } catch(error) {
-    res.status(400).json({message: 'something is wrong'})
+    console.log(error)
   }
   
 }

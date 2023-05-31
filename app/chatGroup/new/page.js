@@ -5,24 +5,20 @@ export default async function ChatGroupCreate() {
 
   const buyerList = await getBuyerListApi();
 
-  async function search(search) {
+  async function search(searchString) {
     "use server";
+    console.log('server', searchString)
 
     return buyerList.filter((buyer) =>
-      buyer.email.toLowerCase().includes(search.toLowerCase())
+      buyer.email.toLowerCase().includes(searchString.toLowerCase())
     )
-  }
-
-  async function create(list) {
-    "use server";
-
   }
 
   if(buyerList.length > 0) {
     return (
       <div className='flex-1 flex flex-col py-5 md:py-14'>
         <div className='flex-1 flex flex-col max-w-xl w-full mx-auto'>
-          <ChatGroupForm buyerList={buyerList} create={create} search={search} />
+          <ChatGroupForm search={search} />
         </div>
       </div>
     )

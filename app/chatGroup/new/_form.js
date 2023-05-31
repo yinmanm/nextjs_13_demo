@@ -1,15 +1,17 @@
 'use client';
 import { useState, useEffect } from "react";
 
-export default async function ChatGroupForm({ buyerList, create, search }) {
+export default async function ChatGroupForm(props) {
 
-  const [chatGroupName, setChatGroupName] = useState('');
-  const [filterBuyerList, setFilterBuyerList] = useState([...buyerList] || []);
+  const [searchString, setSearchString] = useState("");
+  const [chatGroupName, setChatGroupName] = useState("");
+  const [filterBuyerList, setFilterBuyerList] = useState([]);
   const [selectedBuyerList, setSelectedBuyerList] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const searchClick = async (e) => {
-    // setFilterBuyerList(await search(e.target.value));
+  const searchHandel = async (num) => {
+    console.log(num)
+    // setFilterBuyerList(await search(searchString));
   }
 
   const createSubmit = async (e) => {
@@ -24,14 +26,19 @@ export default async function ChatGroupForm({ buyerList, create, search }) {
     }
   }
 
+  useEffect(()=>{
+    searchHandel('input change');
+  },[searchString])
+
   return (
-    <form onSubmit={createSubmit} action="#" className="flex-1 flex flex-col">
+    <form onSubmit={createSubmit} action="#" method="POST" className="flex-1 flex flex-col">
       <div className='pb-5 px-4 sm:px-6 border-b border-gray-100'>
         <input
           type="text"
           name="buyer_name"
           id="buyer_name"
-          onChange={searchClick}
+          value={searchString}
+          onChange={(e) => setSearchString(e.target.value)}
           className="block w-full rounded-md border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
           placeholder="Search"
         />
@@ -75,6 +82,7 @@ export default async function ChatGroupForm({ buyerList, create, search }) {
           name="chat_group_name"
           id="chat_group_name"
           value={chatGroupName}
+          onChange={(e) => setChatGroupName(e.target.value)}
           className="block w-full rounded-md border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
           placeholder="chatGroup Name"
         />

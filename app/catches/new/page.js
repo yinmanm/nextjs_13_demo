@@ -1,16 +1,20 @@
 'use client';
 import "flatpickr/dist/themes/material_green.css";
 import Flatpickr from "react-flatpickr";
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import getBuyerListApi from '../../api/buyer/list';
 import getCategoryListApi from '../../api/category/list';
 import catchesCreateApi from '../../api/catches/create';
 import itemCreateApi from '../../api/item/create';
+import chatCreateApi from '../../api/chat/create';
 
 export default function CatchNew() {
 
   const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const [chatId, setChatId] = useState();
 
   const [loading, setLoading] = useState(false);
   const [itemLoading, setItemLoading] = useState(false);
@@ -72,9 +76,24 @@ export default function CatchNew() {
           await itemCreateApi(JSON.stringify(data));
         })
 
-        router.push('/catches');
-
-        setLoading(false);
+        // add message in chatShow
+        const chatData = {
+          author: { connect: { id: 1 }},
+          chatGroup: { connect: { id: Number(chatId) }},
+          isCatch: true,
+          catchId: result?.id,
+          createAt: new Date(),
+          content: '',
+        }
+        if(result.id && chatId) {
+          const chatResult = await chatCreateApi(JSON.stringify(chatData));
+          if(chatResult) {
+            router.push(`/chat/show/${chatId}`);
+          }
+        } else if(result.id) {
+          router.push(`/catches/show/${result.id}`);
+        } else {
+        }
 
       } catch(error) {
         console.log(error);
@@ -118,6 +137,12 @@ export default function CatchNew() {
     setCategory(categoryList[0]?.id);
     setCategoryName(categoryList[0]?.name);
   }, [categoryList])
+
+  useEffect(()=>{
+    if(searchParams.get('chatId')) {
+      setChatId(searchParams.get('chatId'));
+    }
+  },[searchParams])
   
   return (
     <div>

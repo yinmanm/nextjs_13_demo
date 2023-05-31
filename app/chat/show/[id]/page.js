@@ -1,4 +1,5 @@
 import getChatGroupShow from '../../../api/chatGroup/show';
+import chatCreateApi from '../../../api/chat/create';
 import MessageList from './_list';
 
 export default async function ChatShow() {
@@ -10,9 +11,15 @@ export default async function ChatShow() {
     return list;
   }
 
+  async function createChat(data) {
+    "use server";
+    const result = await chatCreateApi(data);
+    return result;
+  }
+
   return (
     <div className='flex-1 flex flex-col'>
-      <MessageList getChatShow={getChatShow} />
+      <MessageList getChatShow={getChatShow} createChat={createChat} />
     </div>
   )
   
