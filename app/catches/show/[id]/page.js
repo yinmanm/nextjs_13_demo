@@ -18,19 +18,19 @@ export default async function CatchShow() {
     "use server";
 
     const listArr = JSON.parse(list);
-    const result = await listArr.map(async item=> {
+    const totalResult = await listArr.map(async item => {
       const data = {
         author: { connect: { id: 1 }},
         chatGroup: { connect: { id: Number(item) }},
         isCatch: true,
-        catchId: id,
+        catchId: Number(id),
         createAt: new Date(),
         content: '',
       }
-      const chatResult = await chatCreateApi(JSON.stringify(data));
-      return chatResult
+      const result = await chatCreateApi(JSON.stringify(data));
+      return result
     })
-    return result
+    return totalResult
   }
 
   return (

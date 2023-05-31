@@ -1,9 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 export default function CatchDetail({getCatchDetail, chatGroupList, submitShare}) {
 
   const params = useParams();
+  const router = useRouter();
 
   const [detail, setDetail] = useState();
   const [open, setOpen] = useState(false);
@@ -21,17 +22,26 @@ export default function CatchDetail({getCatchDetail, chatGroupList, submitShare}
     const index = selectedList.indexOf(value);
     if(e.target.checked) {
       const newList = [...selectedList, value];
-      setSelectedList(newList);
+      setSelectedList([...selectedList, value]);
     } else {
       const filterList = selectedList.splice(index,1);
-      setSelectedList(filterList);
+      setSelectedList(selectedList.splice(index,1));
     }
-    console.log('selectedList',selectedList);
   }
 
   const shareHandel = async () => {
     console.log('selectedList===',selectedList);
-    // const result = await submitShare(params.id, JSON.stringify(selectedList));
+    if(selectedList.length == 0) {
+      return false;
+    } 
+    setSendLoading(true);
+    const result = await submitShare(params.id, JSON.stringify(selectedList));
+    console.log('result',result)
+    if(result) {
+      router.push('/dashboard');
+    } else {
+      setSendLoading(false);
+    }
   }
 
   useEffect(()=>{
