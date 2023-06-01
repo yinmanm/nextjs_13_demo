@@ -29,7 +29,8 @@ export default function CatchDetail({getCatchDetail, chatGroupList, submitShare}
     }
   }
 
-  const shareHandel = async () => {
+  const shareHandel = async (e) => {
+    e.preventDefault();
     console.log('selectedList===',selectedList);
     if(selectedList.length == 0) {
       return false;
@@ -38,7 +39,7 @@ export default function CatchDetail({getCatchDetail, chatGroupList, submitShare}
     const result = await submitShare(params.id, JSON.stringify(selectedList));
     console.log('result',result)
     if(result) {
-      router.push('/dashboard');
+      router.replace('/dashboard');
     } else {
       setSendLoading(false);
     }
