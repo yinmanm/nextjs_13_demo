@@ -12,6 +12,9 @@ export default function ChatList(props) {
   const [chatShow, setChatShow] = useState();
   const [loading, setLoading] = useState(false);
   const [content, setContent] = useState("");
+  const [newReply, setNewReply] = useState(false);
+  const [newReplyName, setNewReplyName] = useState("");
+  const [newReplyContent, setNewReplyContent] = useState("");
 
   const setData = async (id) => {
     setChatShow(await props.getChatShow(id));
@@ -20,6 +23,10 @@ export default function ChatList(props) {
   const submitChat = async (e) => {
     e.preventDefault();
     if(content) {
+      setNewReply(true);
+      setNewReplyName('manman+2');
+      setNewReplyContent(content);
+      setContent('');
       setLoading(true);
       const data = {
         author: { connect: { id: 2 }},
@@ -35,8 +42,10 @@ export default function ChatList(props) {
         // router.refresh();
         setChatShow(await props.getChatShow(params.id));
       }
-      setContent('');
       setLoading(false);
+      setNewReply(false);
+      setNewReplyName('');
+      setNewReplyContent('');
     }
   }
 
@@ -80,6 +89,14 @@ export default function ChatList(props) {
                     )}
                   </li>
                 ))}
+                {newReply && (
+                  <li className='py-5'>
+                    <div className=''>
+                      <div className='text-sm leading-6 text-gray-500'>{newReplyName}</div>
+                      <div className='leading-6 text-gray-500'>{newReplyContent}</div>
+                    </div>
+                  </li>
+                )}
               </ul>
             </div>
           </div>

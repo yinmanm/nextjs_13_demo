@@ -50,6 +50,7 @@ model Buyer {
   mobile     String?
   email      String    @unique
   catches    Catches[]
+  chatGroups ChatGroup[]
 }
 
 model BpBuyer {
@@ -85,6 +86,7 @@ model ChatGroup {
   createAt DateTime
   chats    Chat[]
   user     User[]
+  buyer    Buyer[]
 }
 
 model Chat {

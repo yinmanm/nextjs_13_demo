@@ -27,10 +27,12 @@ export default async function Dashboard() {
                 <div className="flex-1 truncate">
                   <div className="">
                     <p className="font-semibold leading-6 text-gray-900 truncate">{chatGroup.title}</p>
-                    {chatGroup.chats[chatGroup.chats.length-1].isCatch ? (
+                    {chatGroup.chats.length > 0 ? (chatGroup.chats[chatGroup.chats.length-1].isCatch ? (
                       <p className="text-sm leading-6 text-gray-600 truncate">{chatGroup.chats[chatGroup.chats.length-1].author.name} has completed a Catch</p>
                     ) : (
                       <p className="text-sm leading-6 text-gray-600 truncate">{chatGroup.chats[chatGroup.chats.length-1].author.name}: {chatGroup.chats[chatGroup.chats.length-1].content}</p>
+                    )) : (
+                      <div className='h-6'></div>
                     )}
                   </div>
                 </div>

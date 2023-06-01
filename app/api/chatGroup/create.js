@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 
 export default async function handel(req, res) {
   const data = JSON.parse(req);
+  console.log('create chatGroup data', data)
   try {
     const result = await prisma.chatGroup.create({
       data: data

@@ -4,6 +4,7 @@ import Flatpickr from "react-flatpickr";
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, useEffect } from 'react';
 import getBuyerListApi from '../../api/buyer/list';
+import getGroupBuyerListApi from '../../api/buyer/listGroup';
 import getCategoryListApi from '../../api/category/list';
 import catchesCreateApi from '../../api/catches/create';
 import itemCreateApi from '../../api/item/create';
@@ -32,11 +33,16 @@ export default function CatchNew() {
   const [quantity, setQuantity] = useState(0)
   const [price, setPrice] = useState(0)
 
-  const getBuyerList = async () => {
-    setBuyerList(await getBuyerListApi());
-  }
   const getCategoryList = async () => {
     setCategoryList(await getCategoryListApi());
+  }
+
+  const filterBuyerList = async () => {
+    if(chatId) {
+      setBuyerList(await getGroupBuyerListApi(chatId));
+    } else {
+      setBuyerList(await getBuyerListApi());
+    }
   }
 
   const categoryChange = async (e) => {
@@ -126,7 +132,6 @@ export default function CatchNew() {
   }
 
   useEffect(()=>{
-    getBuyerList();
     getCategoryList();
   },[])
 
@@ -143,6 +148,10 @@ export default function CatchNew() {
       setChatId(searchParams.get('chatId'));
     }
   },[searchParams])
+
+  useEffect(()=>{
+    filterBuyerList();
+  },[chatId])
   
   return (
     <div>
