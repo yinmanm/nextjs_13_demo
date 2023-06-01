@@ -17,7 +17,7 @@ export default function ChatList(props) {
     setChatShow(await props.getChatShow(id));
   }
 
-  const submitChat = async () => {
+  const submitChat = async (e) => {
     e.preventDefault();
     if(content) {
       setLoading(true);
