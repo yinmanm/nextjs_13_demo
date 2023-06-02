@@ -11,7 +11,7 @@ export default function ChatGroupForm({buyerList, create}) {
   const [chatGroupName, setChatGroupName] = useState("");
   const [filterBuyerList, setFilterBuyerList] = useState([]);
   const [selectedBuyerIdList, setSelectedBuyerIdList] = useState([]);
-  const [selectedBuyerList, setSelectedBuyerList] = useState([]);
+  // const [selectedBuyerList, setSelectedBuyerList] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const searchHandel = () => {
@@ -29,17 +29,17 @@ export default function ChatGroupForm({buyerList, create}) {
     if(e.target.checked) {
       console.log('checked')
       setSelectedBuyerIdList([...selectedBuyerIdList, value]);
-      setSelectedBuyerList([...selectedBuyerList, {id:value, email:email}]);
+      // setSelectedBuyerList([...selectedBuyerList, {id:value, email:email}]);
     } else {
       console.log('not checked')
       setSelectedBuyerIdList(selectedBuyerIdList.splice(index,1));
-      setSelectedBuyerList(selectedBuyerList.splice(index,1))
+      // setSelectedBuyerList(selectedBuyerList.splice(index,1))
     }
-    console.log('selectedBuyerList',selectedBuyerList)
+    // console.log('selectedBuyerList',selectedBuyerList)
   }
 
   const createSubmit = async (e) => {
-    if(selectedBuyerList.length > 0 || chatGroupName) {
+    if(selectedBuyerIdList.length > 0 || chatGroupName) {
       try {
         setLoading(true);
         e.preventDefault();
@@ -87,9 +87,18 @@ export default function ChatGroupForm({buyerList, create}) {
           className="block w-full rounded-md border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
           placeholder="Search"
         /> */}
-        {selectedBuyerList.map((buyer,index) => (
+        {/* {selectedBuyerList.map((buyer,index) => (
           <div className="pt-3 inline-block w-20 truncate text-xs leading-none mr-2" key={index}>{buyer.email}</div>
-        ))}
+        ))} */}
+        <input
+          type="text"
+          name="chat_group_name"
+          id="chat_group_name"
+          value={chatGroupName}
+          onChange={(e) => setChatGroupName(e.target.value)}
+          className="block w-full rounded-md border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
+          placeholder="chatGroup Name"
+        />
       </div>
 
       <div className="flex-1 overflow-y-auto">
@@ -124,15 +133,7 @@ export default function ChatGroupForm({buyerList, create}) {
       </div>
 
       <div className="pt-3 px-4 sm:px-6 space-y-3">
-        <input
-          type="text"
-          name="chat_group_name"
-          id="chat_group_name"
-          value={chatGroupName}
-          onChange={(e) => setChatGroupName(e.target.value)}
-          className="block w-full rounded-md border-0 py-3 px-4 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600"
-          placeholder="chatGroup Name"
-        />
+        
         <button
           type="submit"
           disabled={loading}
