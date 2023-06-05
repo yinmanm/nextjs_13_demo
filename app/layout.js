@@ -1,8 +1,8 @@
-'use client'
+// 'use client'
 import './globals.css'
 import { Inter } from 'next/font/google';
 import Layout from './componets/Layout';
-import { SessionProvider } from 'next-auth/react';
+import { ClerkProvider } from '@clerk/nextjs/app-beta'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -11,16 +11,13 @@ const inter = Inter({ subsets: ['latin'] })
 //   description: 'Catch'
 // }
 
-export default function RootLayout({ children, session }) {
+export default function RootLayout({ children }) {
 
   return (
-    <html lang='en'>
-      <body className="">
+    <ClerkProvider>
+      <html lang="en">
         <Layout children={children} />
-        {/* <SessionProvider session={session}>
-          <Layout children={children} />
-        </SessionProvider> */}
-      </body>
-    </html>
+      </html>
+    </ClerkProvider>
   )
 }
