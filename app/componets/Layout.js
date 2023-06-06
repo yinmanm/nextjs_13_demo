@@ -14,7 +14,7 @@ export default function Layout({children}) {
   const router = useRouter();
   const pathname = usePathname();
 
-  if (pathname!= '/' && pathname!= '/sign_in' && !isLoaded && !isSignedIn) {
+  if (pathname!= '/' && pathname!= '/sign_in' && (!isLoaded || !isSignedIn)) {
     router.push(`/sign_in?redirectUrl=${pathname}`);
   }
 
