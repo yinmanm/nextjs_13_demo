@@ -9,7 +9,8 @@ import classNames from "classnames";
 const Header = () => {
 
   const pathname = usePathname();
-  const user = useUser();
+  const { user } = useUser();
+  console.log('user', user)
 
   const [navOpen, setNavOpen] = useState(false);
 
@@ -64,19 +65,17 @@ const Header = () => {
               </div>
             </div>
             <div className="hidden sm:flex sm:items-center sm:space-x-4 sm:ml-6">
-              <SignedIn>
-                {/* <div>{user?.emailAddresses}</div> */}
+              <SignedIn redirectUrl={`${pathname} || '/' `}>
+                <div>{user?.emailAddresses[0]?.emailAddress}</div>
                 <UserButton />
               </SignedIn>
-              <SignedOut>
-                <SignInButton mode='modal'>
-                  <button
-                    type="button"
-                    className="rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                  >
-                    Sign in
-                  </button>
-                </SignInButton>
+              <SignedOut redirectUrl='/'>
+                <Link
+                  href="/sign_in"
+                  className="rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                >
+                  Sign in
+                </Link>
               </SignedOut>
             </div>
             <div className="-mr-2 flex items-center sm:hidden">
@@ -131,14 +130,13 @@ const Header = () => {
                     {/* {user?.emailAddresses} */}
                 </div>
               </SignedIn>
-              <SignedOut>
-                <SignInButton mode='modal'>
-                  <div 
-                    className='block mx-4 rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white text-center shadow-sm'
-                    >
-                      Sign in
-                  </div>
-                </SignInButton>
+              <SignedOut redirectUrl='/'>
+                <Link 
+                  href="/sign_in"
+                  className='block mx-4 rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white text-center shadow-sm'
+                  >
+                    Sign in
+                </Link>
               </SignedOut>
             </div>
           </div>
